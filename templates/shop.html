@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Medicine Shop</h2>
+
+{% for m in medicines %}
+<form method="POST" class="card">
+{{m.name}} - ₹{{m.price}}
+<input type="hidden" name="med" value="{{m.name}}">
+<button class="btn">Order</button>
+</form>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{
+    "users": {
+        "admin": {
+            "password": "scrypt:32768:8:1$8rl19hLtjQ8PiOOg$0671eaf66e31f8e5a1a609c534b2c89d88effca8b3b22e51f4a5bc35b2fe81fe01786bd3154567fcd847e93489cf3b598837270443f9f1af7527dba78e15f6e6",
+            "role": "Admin"
+        },
+        "Pavi": {
+            "password": "scrypt:32768:8:1$vzl6UomxqwbGYQDs$6aac0e4a7bd5b4be1fed7fcfe082cc7b780486f45a3098e5c1890fcfec16b0c86cc41872b1eb85bd53abf8b3ef603b365b88bc121e162842e3713f23355f7c07",
+            "role": "User"
+        },
+        "medical": {
+            "password": "scrypt:32768:8:1$rucxTK9jXCtx9ODx$a56f6d40394a6a2fb4a392d4e805ba615fa8f62659b6ffbff72137b22f0630cb74869be9f6816989165ef5e27b3bc9e5d435b58a9bcc934dbf65d0d98e281978",
+            "role": "Medical"
+        }
+    },
+    "complaints": [],
+    "medicines": [
+        {
+            "name": "dolo",
+            "price": "10"
+        }
+    ],
+    "orders": [
+        {
+            "user": "Pavi",
+            "medicine": "dolo"
+        }
+    ]
+}

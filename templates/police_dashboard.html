@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Police Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<h2>Police Panel</h2>
 
-<h1>👮 Police Station Dashboard</h1>
-<a href="/logout">Logout</a>
-
+{% for c in complaints %}
 <div class="card">
-    <h3>📄 View Complaints</h3>
-    <p>List of emergency alerts will appear here.</p>
+<b>{{c.user}}</b> : {{c.text}} ({{c.status}})
+{% if c.status=="Pending" %}
+<form method="POST">
+<input type="hidden" name="id" value="{{loop.index0}}">
+<button class="btn">Resolve</button>
+</form>
+{% endif %}
 </div>
-
-</body>
-</html>
+{% endfor %}
+{% endblock %}

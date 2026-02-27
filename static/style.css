@@ -1,31 +1,188 @@
-body {
-    font-family: Arial;
-    background: #f8f2ff;
-    text-align: center;
+/* ===== GOOGLE FONT ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
-h1 {
-    color: #6a0dad;
+/* ===== BODY BACKGROUND WITH ONLINE IMAGE ===== */
+body{
+    min-height:100vh;
+    color:#fff;
+    padding:40px;
+    background:
+    linear-gradient(rgba(8,15,40,0.75), rgba(8,15,40,0.85)),
+    url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600")
+    center/cover no-repeat fixed;
 }
 
-button {
-    padding: 10px 20px;
-    background: #ff4081;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+/* ===== HEADINGS ===== */
+h1,h2,h3{
+    text-align:center;
+    margin-bottom:18px;
+    letter-spacing:0.5px;
 }
 
-button:hover {
-    background: #e91e63;
+/* ===== NAVBAR ===== */
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 28px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(14px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.25);
+    margin-bottom:30px;
+    animation:slideDown 0.8s ease;
 }
 
-.card {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 60%;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px gray;
+/* ===== GLASS CARD ===== */
+.card{
+    max-width:520px;
+    margin:20px auto;
+    padding:28px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.18);
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
+    animation:fadeUp 0.9s ease;
+}
+
+/* ===== INPUT FIELDS ===== */
+input, select, textarea{
+    width:100%;
+    padding:13px 14px;
+    margin-top:12px;
+    border:none;
+    border-radius:12px;
+    outline:none;
+    background:rgba(255,255,255,0.12);
+    color:white;
+    font-size:15px;
+    transition:0.25s;
+}
+
+input::placeholder,
+textarea::placeholder{
+    color:rgba(255,255,255,0.65);
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    background:rgba(255,255,255,0.18);
+    box-shadow:0 0 0 2px rgba(255,255,255,0.3);
+}
+
+/* ===== BUTTONS ===== */
+button{
+    width:100%;
+    margin-top:18px;
+    padding:13px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:600;
+    color:white;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff6a00,#ee0979);
+    transition:0.35s;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+}
+
+button:hover{
+    transform:translateY(-3px) scale(1.02);
+    box-shadow:0 12px 25px rgba(0,0,0,0.45);
+}
+
+button:active{
+    transform:scale(0.98);
+}
+
+/* ===== LINKS ===== */
+a{
+    color:#ffd86f;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.2s;
+}
+
+a:hover{
+    color:#fff;
+    text-shadow:0 0 6px rgba(255,255,255,0.7);
+}
+
+/* ===== DASHBOARD GRID ===== */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+    margin-top:25px;
+}
+
+/* ===== DASHBOARD PANELS ===== */
+.panel{
+    padding:28px;
+    border-radius:22px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.15);
+    transition:0.35s;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+}
+
+/* glowing overlay */
+.panel::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);
+    opacity:0;
+    transition:0.4s;
+}
+
+.panel:hover::before{
+    opacity:1;
+}
+
+.panel:hover{
+    transform:translateY(-8px) scale(1.03);
+    box-shadow:0 14px 35px rgba(0,0,0,0.5);
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    margin-top:50px;
+    text-align:center;
+    opacity:0.8;
+    font-size:14px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes slideDown{
+    from{opacity:0; transform:translateY(-40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+    body{
+        padding:20px;
+    }
+    .card{
+        padding:22px;
+    }
 }

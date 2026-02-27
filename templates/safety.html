@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Safety Center</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<h2>Complaint Center</h2>
 
-<h2>🔐 Safety Center</h2>
-<a href="/user_dashboard">🔙 Back</a>
+<form method="POST">
+<input name="text" placeholder="Describe issue">
+<button class="btn">Submit</button>
+</form>
 
-<hr>
-
-<h1 style="color:red;">🔴 Emergency SOS</h1>
-
-<ul>
-    <li>📍 Nearby Police Stations</li>
-    <li>📝 File Complaint</li>
-    <li>📄 View Complaint Status</li>
-</ul>
-
-</body>
-</html>
+{% for c in complaints %}
+<div class="card">{{c.user}} - {{c.text}} ({{c.status}})</div>
+{% endfor %}
+{% endblock %}

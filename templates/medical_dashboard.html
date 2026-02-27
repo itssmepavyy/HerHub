@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Medical Store</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<h2>Medical Panel</h2>
 
-<h1>🏥 Medical Store Dashboard</h1>
-<a href="/logout">Logout</a>
+<form method="POST">
+<input name="name" placeholder="Medicine name">
+<input name="price" placeholder="Price">
+<button class="btn">Add</button>
+</form>
 
-<div class="card">
-    <h3>💊 Manage Medicines</h3>
-    <p>Add / Update / Remove medicines here.</p>
-</div>
-
-</body>
-</html>
+{% for m in medicines %}
+<div class="card">{{m.name}} - ₹{{m.price}}</div>
+{% endfor %}
+{% endblock %}

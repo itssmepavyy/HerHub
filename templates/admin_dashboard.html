@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Panel</h2>
 
-<h1>👑 Admin Panel</h1>
-<a href="/logout">Logout</a>
-
+{% for u in users %}
 <div class="card">
-    <h3>All Registered Users</h3>
-
-    {% for user, details in users.items() %}
-        <p>{{ user }} - {{ details.role }}</p>
-    {% endfor %}
-
+{{u}}
+<form method="POST">
+<input type="hidden" name="user" value="{{u}}">
+<button class="btn danger">Delete</button>
+</form>
 </div>
-
-</body>
-</html>
+{% endfor %}
+{% endblock %}

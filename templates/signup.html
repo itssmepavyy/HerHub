@@ -1,28 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Signup</title>
-</head>
-<body>
-    <link rel="stylesheet" href="../static/style.css">
-    <h2>Signup Page</h2>
-
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-
-        <label>Select Role:</label><br>
-        <select name="role" required>
-            <option value="User">Normal User</option>
-            <option value="Police">Police Station</option>
-            <option value="Medical">Medical Store</option>
-            <option value="Admin">Admin</option>
-        </select><br><br>
-
-        <button type="submit">Sign Up</button>
-    </form>
-
-    <br>
-    <a href="/login">Already have an account? Login</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+<h2>Signup</h2>
+<form method="POST">
+<input name="username" placeholder="Username">
+<input name="password" type="password" placeholder="Password">
+<select name="role">
+<option>User</option>
+<option>Police</option>
+<option>Medical</option>
+<option>Admin</option>
+</select>
+<button class="btn">Signup</button>
+</form>
+</div>
+{% endblock %}
