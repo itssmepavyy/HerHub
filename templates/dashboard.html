@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Welcome {{ username }}</h2>
+    <h3>Role: {{ role }}</h3>
+
+    {% if role == "User" %}
+        <p>You can access Safety, Health, Marketplace, Jobs.</p>
+    {% elif role == "Police" %}
+        <p>You can manage and approve complaints.</p>
+    {% elif role == "Medical" %}
+        <p>You can manage medicines and orders.</p>
+    {% elif role == "Admin" %}
+        <p>You have full system access.</p>
+    {% endif %}
+
+    <br>
+    <a href="/logout">Logout</a>
+</body>
+</html>

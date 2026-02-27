@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>🌸 Welcome {{ username }}</h1>
+<a href="/logout">Logout</a>
+
+<div class="card">
+    <h2 style="color:red;">🚨 SOS BUTTON</h2>
+    <button onclick="sendLocation()">Send Emergency Location</button>
+    <p id="location"></p>
+</div>
+
+<script>
+function sendLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            document.getElementById("location").innerHTML =
+            "Latitude: " + position.coords.latitude +
+            "<br>Longitude: " + position.coords.longitude;
+        });
+    } else {
+        alert("Geolocation not supported");
+    }
+}
+</script>
+
+</body>
+</html>
