@@ -2,15 +2,14 @@
   <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
-# [Project Name] 🎯
+# [HerHub] 🎯
 
 ## Basic Details
 
-### Team Name: [Name]
-
+Team Name:Hackover
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: [Pavithra K] - [College of Engineering thalassery]
+- Member 2: [Abhikshitha S S]- [College of Engineering Thalassery]
 
 ### Hosted Project Link
 [mention your project hosted link here]
