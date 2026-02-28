@@ -1,28 +1,186 @@
 {
     "users": {
         "admin": {
-            "password": "scrypt:32768:8:1$8rl19hLtjQ8PiOOg$0671eaf66e31f8e5a1a609c534b2c89d88effca8b3b22e51f4a5bc35b2fe81fe01786bd3154567fcd847e93489cf3b598837270443f9f1af7527dba78e15f6e6",
+            "password": "scrypt:32768:8:1$HhUE35vugrV5KSNo$139fb5feedfb4b17ced19ab0ccd18821b6aef157d5a2920dd41d72bb1b8414bc4c2259ac6ef07476df9acc6f86763b35337515567654eadc8151b8cf72ad8912",
             "role": "Admin"
         },
         "Pavi": {
-            "password": "scrypt:32768:8:1$vzl6UomxqwbGYQDs$6aac0e4a7bd5b4be1fed7fcfe082cc7b780486f45a3098e5c1890fcfec16b0c86cc41872b1eb85bd53abf8b3ef603b365b88bc121e162842e3713f23355f7c07",
+            "password": "scrypt:32768:8:1$z6kVJt1fwB0zGi2q$3a19662bfdb47d1c9a0baffde19e683d2f82c8bfdecf619055e8de4d5a1ff3045a5149f6bb46ded0d220752b38012e45430868f13b4a939401c4f59601545497",
             "role": "User"
         },
         "medical": {
-            "password": "scrypt:32768:8:1$rucxTK9jXCtx9ODx$a56f6d40394a6a2fb4a392d4e805ba615fa8f62659b6ffbff72137b22f0630cb74869be9f6816989165ef5e27b3bc9e5d435b58a9bcc934dbf65d0d98e281978",
+            "password": "scrypt:32768:8:1$OEkPb3boJet4nFUL$b38c78f5a91c5472e2249ae811526d5e10b0812d1dad2d46222a44223416121f8eead1e29193d83c49ec6fc9d1936ea918afdedd68d4dd5398f9b2086a0c7113",
             "role": "Medical"
+        },
+        "police": {
+            "password": "scrypt:32768:8:1$13GrpB1fPEUvGwIZ$d0a6f393fde4436b62e7d641111f9cba4d134c299b3d268c9304818132aa87592097af15a6741509f07197bac4ef1c83ca6a90bc876b79ffd33c6d865f8fda26",
+            "role": "Police"
+        },
+        "pavi": {
+            "password": "scrypt:32768:8:1$B46Xhhi7WR1BXUtg$5dc79ec5b8aebb4b64d21ea901746637b9fadebd4fc7cb9ad76a0e827e0fba8bf538f5aecf8677c30e9aa651e7894212c989805222ae61227ab12865c5d16328",
+            "role": "User"
+        },
+        "abhii": {
+            "password": "scrypt:32768:8:1$SuRdZw4L0g3Afnkw$3e6b3fbd3776b3572805903b9b19d060dcb748db98125ec28f4fbb642e43f0c4684e6932b708fab6977fe652bd7d499dd53190393dc6e3010c8a113648812a06",
+            "role": "Medical"
+        },
+        "ammu": {
+            "password": "scrypt:32768:8:1$RTvp2UVj4XYwrO31$b6bfbe1fb47bdcbbc5d45fd9a8326c7dce275ab344bcc3b100fdf986e4273cccdbd36d84ba75014e897d494e58595ca9e8b9eaf5bb4e331510528aa8596f4ba0",
+            "role": "User"
+        },
+        "abhi": {
+            "password": "scrypt:32768:8:1$nGmQAGtwqjIqbBnx$f95a935314faabbe0097ee8bd46d4ab2da0c298a15b7978c00bdf98824242312a1673d35b106bc8699d6af6d8ea2ed54d1a3617d4ee06e58427dfc7eae905e7a",
+            "role": "User",
+            "profile": {
+                "email": "abhi@gmail.com",
+                "phone": "2353224211",
+                "aadhar": "236776826282",
+                "gender": "Women",
+                "dob": "2026-03-02"
+            }
+        },
+        "tr6tu": {
+            "password": "scrypt:32768:8:1$ao2L2vtt1oOqjaeN$6180fc9ac35803ea2cb3cdc6ce3681fda38e45b59e1336f2153ddd0f7338be43d738e1c3e43989b9917d57980c2d3198ab061e5cb2bcbac64668cf75099cb794",
+            "role": "User",
+            "profile": {}
+        },
+        "ajm": {
+            "password": "scrypt:32768:8:1$8lCW5DIE5TC8m1ew$9739c4a576a069aebc0e36e65aaadfd64527f933868ca28ba4d23ad65aad15e6ac7cece06562193e557586a0605fdb0955ebd21bbc9717f8528b17db7a26c4c1",
+            "role": "User",
+            "profile": {}
+        },
+        "aa": {
+            "password": "scrypt:32768:8:1$zoxmbleWbc8j18Sm$0b785035b7cc876ccb7257d3173aad129fa6cdd4b6b9d3d8d3767469b34a8fda9ab0e0d91c18d6eb7080e05e99c9afded94b34b54e125b92237106ff4a411cea",
+            "role": "User",
+            "profile": {}
+        },
+        "qq": {
+            "password": "scrypt:32768:8:1$sBDdpl0BXP6kfLjW$f0624c972c44ecdad83489d3b471690b6015691539459b916a7438bf17dbb35a0363c449614c1539367eb90a7248920bca6414020e2282350b74c15f247235ac",
+            "role": "User",
+            "profile": {}
+        },
+        "ww": {
+            "password": "scrypt:32768:8:1$RdnSgOYbDFfaw6cT$b31422d561ad61873127e5b08f671c88208407254ad04be16c4fa7cd8b52005618aeaef5bcf495426478c593901e99c6ee3d4ce438a3011d8bfd71453a04aed7",
+            "role": "User",
+            "profile": {
+                "email": "hgdeh@gmail.com",
+                "phone": "1234978500",
+                "aadhar": "112098736421",
+                "gender": "Women",
+                "dob": "2026-02-12",
+                "blood_group": "o+",
+                "bio": "nkm,",
+                "interests": [
+                    "Periods"
+                ],
+                "address": "kjk",
+                "location": "jnk"
+            }
+        },
+        "uu": {
+            "password": "scrypt:32768:8:1$FfhEikVdSl6nBY6G$4830464942717808493fc4b9d2f52dfbc31892d1c1beb9a0a7cb50aaf0e210d54e7e95b1b63454b6e116b7a74ef5cb31bf3203d0fecbc35cd0821062aacd0a8b",
+            "role": "User",
+            "profile": {
+                "email": "dhg@gmail.com",
+                "phone": "7510817250",
+                "aadhar": "112234567890",
+                "gender": "Women",
+                "dob": "2017-01-31",
+                "blood_group": "B-",
+                "bio": "edtywyg",
+                "interests": [
+                    "gr"
+                ],
+                "address": "wsqw",
+                "location": "ewd"
+            }
+        },
+        "kk": {
+            "password": "scrypt:32768:8:1$FIH96LTDuaEm62WD$71f34ee3ecb569d7caa82c9a7282ca824a2236695a5cb46fbbf5058b41ce468c9eeec6e3aa535626d09e90e46d24362811a5abc7c4bf5fbe8dcfecb953953c65",
+            "role": "Medical",
+            "profile": null
+        },
+        "bb": {
+            "password": "scrypt:32768:8:1$VqUBCzfh02nCGUCy$47fbb16ecf74638c8c78fa131068adf6bd00619f8cf6910ba79730856fba0483cbeb97515d35bf0d3b092b97a5ce47953d72f21c6c59a23b1d100a006658bff0",
+            "role": "Medical",
+            "profile": null
+        },
+        "mm": {
+            "password": "scrypt:32768:8:1$ibd1ECgsJ4MGatmZ$b65769d2554d016137a74e44ffa638cfa41dd8272aa2403e1b82842bbf7ce4a0cdcf98f9dad677aa53a3b69a73091193f53fbf5e9d54d12d9255cea9c2974378",
+            "role": "Medical",
+            "profile": null
+        },
+        "raju": {
+            "password": "scrypt:32768:8:1$F8Fh6SDEIcw8Oyva$e777014d76b7f8924e0e2e96d769863af7a0b28b1d5c3fbf2696442c1948ba30a9ae789ab455ebd2381b0580db4f638ea434e22089eaca3618ed603aa6adbbb3",
+            "role": "Police",
+            "profile": null
+        },
+        "juju": {
+            "password": "scrypt:32768:8:1$B9arb9gB1BdXKrzF$26d4f02ba9f0df0d476657a399d91ed907c358a93a63d969e73747284583150709fb4d06f5fb11b40de477081999074fbc90c19d5e4b51597f6a7e9437e2e6bb",
+            "role": "Police",
+            "profile": null
+        },
+        "susu": {
+            "password": "scrypt:32768:8:1$StGWvEe38u2Qiafr$081cd0039e14c3c23c33541ae9610e9c4d6cdb286da5374138bb17e1a8232c667756d15cd3c18f65bfa874619fe8d8fbee674cc59619f62a81997ebafca855b1",
+            "role": "Police",
+            "profile": null
         }
     },
-    "complaints": [],
+    "complaints": [
+        {
+            "user": "Pavi",
+            "text": "",
+            "status": "Resolved"
+        },
+        {
+            "user": "Pavi",
+            "text": "hi hellooo",
+            "status": "Resolved"
+        },
+        {
+            "user": "pavi",
+            "text": "hjkjlk",
+            "status": "Resolved"
+        },
+        {
+            "user": "pavi",
+            "text": "tfguy8",
+            "status": "Resolved"
+        }
+    ],
     "medicines": [
         {
             "name": "dolo",
             "price": "10"
+        },
+        {
+            "name": "paracetamol",
+            "price": "15"
+        },
+        {
+            "name": "crocin",
+            "price": "12"
         }
     ],
     "orders": [
         {
             "user": "Pavi",
+            "medicine": "dolo"
+        },
+        {
+            "user": "Pavi",
+            "medicine": "dolo"
+        },
+        {
+            "user": "Pavi",
+            "medicine": "paracetamol"
+        },
+        {
+            "user": "pavi",
+            "medicine": "dolo"
+        },
+        {
+            "user": "pavi",
             "medicine": "dolo"
         }
     ]

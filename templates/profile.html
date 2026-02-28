@@ -1,20 +1,38 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Profile</title>
-</head>
-<body>
-
-<h2>👤 Profile</h2>
-<a href="/user_dashboard">🔙 Back</a>
-
-<hr>
-
-<p><b>Name:</b> {{ username }}</p>
-<p><b>Phone:</b> 9876543210</p>
-<p><b>Emergency Contacts:</b> Add/Edit</p>
-<p><b>Saved Orders:</b> View Orders</p>
-<p><b>Settings:</b> Account Settings</p>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Profile</h2>
+  <a class="btn small" href="/profile/edit">Edit</a>
+  <p><b>Name:</b> {{ username }}</p>
+  {% if profile %}
+    <p><b>Gender:</b> {{ profile.gender }}</p>
+    <p><b>Email:</b> {{ profile.email }}</p>
+    <p><b>Phone:</b> {{ profile.phone }}</p>
+    <p><b>Aadhar:</b> {{ profile.aadhar }}</p>
+    <p><b>Date of Birth:</b> {{ profile.dob }}</p>
+    <p><b>Age:</b> {% if profile.dob %}{{ profile.dob|calculate_age }}{% else %}-{% endif %}</p>
+    <p><b>Blood Group:</b> {{ profile.blood_group or '-' }}</p>
+    <p><b>Address:</b> {{ profile.address or '-' }}</p>
+    <p><b>Location:</b> {{ profile.location or '-' }}</p>
+    <p><b>Interests:</b>
+      {% if profile.interests %}
+        {{ profile.interests | join(', ') }}
+      {% else %}
+        -
+      {% endif %}
+    </p>
+    <p><b>Bio:</b> {{ profile.bio or '-' }}</p>
+    {% if profile.station_info %}
+      <hr>
+      <h3>Station Info</h3>
+      <p><b>Station ID:</b> {{ profile.station_info.station_id or '-' }}</p>
+      <p><b>Station Email:</b> {{ profile.station_info.email or '-' }}</p>
+      <p><b>State:</b> {{ profile.station_info.state or '-' }}</p>
+      <p><b>District:</b> {{ profile.station_info.district or '-' }}</p>
+      <p><b>Location:</b> {{ profile.station_info.location or '-' }}</p>
+    {% endif %}
+  {% else %}
+    <p>No profile information available.</p>
+  {% endif %}
+</div>
+{% endblock %}

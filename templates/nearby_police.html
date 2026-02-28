@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <a class="btn ghost" href="/safety">← Back</a>
+</div>
+<div class="card">
+  <h2>Nearby Police Stations</h2>
+  <p>Tap a station to compose an email to them.</p>
+  <ul class="stations">
+    {% for s in stations %}
+      <li>
+        <h4>{{ s.name }}</h4>
+        <p>{{ s.address }}</p>
+        <a class="btn small" href="mailto:{{ s.email }}?subject=Complaint%20from%20{{ username }}&body=Hello%20{{ s.name }},%0A%0AI%20want%20to%20report%20an%20incident.%0A%0ARegards,%20{{ username }}">Compose Email</a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

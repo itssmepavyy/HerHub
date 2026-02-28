@@ -30,7 +30,7 @@ h1,h2,h3{
 /* ===== NAVBAR ===== */
 .navbar{
     display:flex;
-    justify-content:space-between;
+    justify-content:flex-start;
     align-items:center;
     padding:18px 28px;
     border-radius:18px;
@@ -39,7 +39,16 @@ h1,h2,h3{
     box-shadow:0 6px 20px rgba(0,0,0,0.25);
     margin-bottom:30px;
     animation:slideDown 0.8s ease;
+    gap:20px;
 }
+
+.nav-links a{
+    color: #ffd86f;
+    margin-left:14px;
+    text-decoration:none;
+    font-weight:600;
+}
+.nav-links a:hover{ color: #fff; }
 
 /* ===== GLASS CARD ===== */
 .card{
@@ -54,6 +63,12 @@ h1,h2,h3{
     animation:fadeUp 0.9s ease;
 }
 
+/* smaller card variant used on signup/login */
+.card.small{
+    max-width:380px;
+    padding:24px;
+}
+
 /* ===== INPUT FIELDS ===== */
 input, select, textarea{
     width:100%;
@@ -63,7 +78,7 @@ input, select, textarea{
     border-radius:12px;
     outline:none;
     background:rgba(255,255,255,0.12);
-    color:white;
+    color:rgb(14, 13, 13);
     font-size:15px;
     transition:0.25s;
 }
@@ -126,6 +141,61 @@ a:hover{
     margin-top:25px;
 }
 
+.dashboard-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.dashboard-grid{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+/* safety grid: vertical stacked action cards */
+.safety-grid{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+}
+.safety-grid .card{
+    max-width:720px;
+    margin:0 auto;
+    padding:20px;
+    cursor:pointer;
+}
+
+.tile{
+    display:inline-block;
+    padding:28px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.08);
+    color:#fff;
+    text-decoration:none;
+    min-width:160px;
+    text-align:center;
+    box-shadow:0 8px 30px rgba(0,0,0,0.35);
+}
+
+.sos-btn{
+    position:fixed;
+    right:24px;
+    top:90px;
+    z-index:999;
+    background:linear-gradient(135deg,#ff416c,#ff4b2b);
+    color:white;
+    border:none;
+    padding:16px 20px;
+    border-radius:50px;
+    font-weight:700;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    cursor:pointer;
+}
+
+.sos-btn:hover{ transform:scale(1.05); }
+
 /* ===== DASHBOARD PANELS ===== */
 .panel{
     padding:28px;
@@ -185,4 +255,176 @@ a:hover{
     .card{
         padding:22px;
     }
+    .styled-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.styled-table th {
+    background: #4CAF50;
+    color: white;
+    padding: 12px;
+}
+
+.styled-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table tr:hover {
+    background: #f1f1f1;
+}
+/* ===== LOGIN BACKGROUND ===== */
+.login-body{
+    margin:0;
+    padding:0;
+    font-family: 'Segoe UI', sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.65)),
+        url("https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=1600&auto=format&fit=crop");
+    background-size:cover;
+    background-position:center;
+}
+
+/* ===== LOGIN CARD ===== */
+.login-container{
+    width:350px;
+    padding:35px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    text-align:center;
+    color:white;
+    animation:fadeIn 1s ease;
+}
+
+/* ===== TITLE ===== */
+.login-container h2{
+    margin-bottom:5px;
+}
+
+.subtitle{
+    font-size:14px;
+    opacity:0.8;
+    margin-bottom:20px;
+}
+
+/* ===== INPUTS ===== */
+.login-container input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+    outline:none;
+}
+
+/* ===== PASSWORD EYE ICON ===== */
+.password-box{
+    position:relative;
+}
+
+.password-box span{
+    position:absolute;
+    right:10px;
+    top:12px;
+    cursor:pointer;
+    color:#333;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border:none;
+    border-radius:8px;
+    background:linear-gradient(135deg,#ff416c,#ff4b2b);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* ===== LINKS ===== */
+.signup-link{
+    margin-top:15px;
+    font-size:14px;
+}
+
+.signup-link a{
+    color:#ffd369;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* small signup prompt shown below the login box */
+.signup-message{
+    display:block;
+    max-width:380px;
+    margin:10px auto 0;
+    text-align:center;
+    font-size:13px;
+    color:#ffd369;
+}
+
+/* per-field error text for signup */
+.error-text{
+    color:#ffb3b3;
+    font-size:13px;
+    margin-top:6px;
+    min-height:18px;
+}
+
+/* profile setup */
+.interests label{
+    display:inline-block;
+    margin-right:10px;
+    font-size:14px;
+    color:#fff;
+}
+
+textarea{
+    width:100%;
+    min-height:80px;
+    padding:10px;
+    border-radius:8px;
+}
+
+/* ===== FLASH MESSAGES ===== */
+.flash{
+    padding:10px;
+    margin-bottom:12px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.flash.success{
+    background:#d4edda;
+    color:#155724;
+}
+
+.flash.error{
+    background:#f8d7da;
+    color:#721c24;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(20px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
 }

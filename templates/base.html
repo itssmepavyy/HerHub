@@ -5,16 +5,29 @@
 <title>{{title}}</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
+<body class="{% if request.path == '/login' %}login-body{% endif %}">
 
 <div class="navbar">
-    <div class="logo">Safety System</div>
-    {% if session.username %}
-    <div>
-        <span>{{session.username}} ({{session.role}})</span>
-        <a href="/logout">Logout</a>
-    </div>
+  {% if session.username %}
+  <nav class="nav-links">
+    {% if session.get('role') == 'Health' %}
+      <a href="/profile">Profile</a>
+      <a href="/medical">Medical Dashboard</a>
+      <a href="/logout">Logout</a>
+    {% elif session.get('role') == 'Medical' %}
+      <a href="/medical">Medical Dashboard</a>
+      <a href="/profile">Profile</a>
+      <a href="/medical/orders">Orders</a>
+      <a href="/logout">Logout</a>
+      {% if session.get('role') == 'Police' %}{% endif %}
+    {% else %}
+      <a href="/dashboard">Dashboard</a>
+      <a href="/profile">Profile</a>
+      <a href="/logout">Logout</a>
     {% endif %}
+  </nav>
+  {% endif %}
+  {# logo removed site-wide per request #}
 </div>
 
 <div class="container">

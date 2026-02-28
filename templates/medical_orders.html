@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <h2>Orders</h2>
+  {% if orders %}
+    <table class="styled-table">
+      <tr><th>User</th><th>Medicine</th></tr>
+      {% for o in orders %}
+      <tr><td>{{ o.user }}</td><td>{{ o.medicine }}</td></tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No orders found.</p>
+  {% endif %}
+</div>
+{% endblock %}

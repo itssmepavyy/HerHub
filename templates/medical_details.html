@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+  <h2>Medical Store Details</h2>
+  <p class="subtitle">Provide your store information so you can manage medicines and orders.</p>
+  <form method="POST">
+    <label for="store_name">Store Name</label>
+    <input id="store_name" name="store_name" required>
+
+    <label for="place">Place / Area</label>
+    <input id="place" name="place" required>
+
+    <label for="store_license">Store Licence Number</label>
+    <input id="store_license" name="store_license" required>
+
+    <label for="start_date">Date of Start</label>
+    <input id="start_date" name="start_date" type="date" required>
+
+    <label for="working_time">Working Time</label>
+    <input id="working_time" name="working_time" placeholder="e.g. 09:00 - 21:00" required>
+
+    <button class="btn">Save Details</button>
+  </form>
+</div>
+
+{% endblock %}

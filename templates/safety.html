@@ -1,13 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Complaint Center</h2>
+<div class="toolbar">
+	<a class="btn ghost" href="javascript:history.back()">← Back</a>
+</div>
 
-<form method="POST">
-<input name="text" placeholder="Describe issue">
-<button class="btn">Submit</button>
-</form>
+<h2>Safety Center</h2>
+<div style="max-width:720px;margin:18px auto;">
+	<form id="sos-form" method="POST" style="margin-bottom:16px;text-align:center;">
+		<input type="hidden" name="text" value="SOS">
+		<button class="btn danger" onclick="return confirm('Trigger SOS?')">Emergency SOS</button>
+	</form>
 
-{% for c in complaints %}
-<div class="card">{{c.user}} - {{c.text}} ({{c.status}})</div>
-{% endfor %}
+	<div class="safety-grid">
+		<a class="card" href="/safety/nearby">
+			<h3>Nearby Police Stations</h3>
+			<p>Find and contact nearby stations.</p>
+		</a>
+
+		<a class="card" href="/safety/complaint">
+			<h3>File Complaint</h3>
+			<p>Submit a complaint or compose email to station.</p>
+		</a>
+
+		<a class="card" href="/safety/status">
+			<h3>View Complaint Status</h3>
+			<p>Check the status of your filed complaints.</p>
+		</a>
+	</div>
+</div>
 {% endblock %}

@@ -1,16 +1,157 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Police Panel</h2>
 
-{% for c in complaints %}
-<div class="card">
-<b>{{c.user}}</b> : {{c.text}} ({{c.status}})
-{% if c.status=="Pending" %}
-<form method="POST">
-<input type="hidden" name="id" value="{{loop.index0}}">
-<button class="btn">Resolve</button>
-</form>
+{% if not session.get('station') or not session.get('station').get('logged_in') %}
+  <div class="card small">
+    <h2>Police Station Login</h2>
+    <p class="subtitle">Enter station details to continue</p>
+    <p id="station-error" class="error" style="color:red; display:none;"></p>
+    <form id="station-form" method="POST">
+      <input type="hidden" name="station_login" value="1">
+      <label for="station_id">Station ID</label>
+      <input id="station_id" name="station_id" placeholder="Station ID">
+
+      <label for="station_email">Station Email</label>
+      <input id="station_email" name="station_email" type="email" placeholder="station@example.com">
+
+      <label for="station_state">State</label>
+      <select id="station_state" name="station_state">
+        <option value="">-- Select state --</option>
+      </select>
+
+      <label for="station_district">District</label>
+      <select id="station_district" name="station_district">
+        <option value="">-- Select district --</option>
+      </select>
+
+      <label for="station_location">Location</label>
+      <input id="station_location" name="station_location" placeholder="City / Area">
+
+      <button class="btn">Login Station</button>
+    </form>
+  </div>
+
+  <script>
+  // Populate state and district selects from server-provided mapping
+  const stateDistricts = {{ state_districts_json | safe }};
+  const stateSelect = document.getElementById('station_state');
+  const districtSelect = document.getElementById('station_district');
+  const stationForm = document.getElementById('station-form');
+  const stationError = document.getElementById('station-error');
+
+  Object.keys(stateDistricts).sort().forEach(s=>{
+    const o = document.createElement('option'); o.value = s; o.textContent = s; stateSelect.appendChild(o);
+  });
+
+  function populateDistricts(state){
+    districtSelect.innerHTML = '<option value="">-- Select district --</option>';
+    if(!state) return;
+    const list = stateDistricts[state] || [];
+    list.forEach(d=>{ const o=document.createElement('option'); o.value=d; o.textContent=d; districtSelect.appendChild(o); });
+  }
+
+  stateSelect.addEventListener('change', function(){ populateDistricts(this.value); });
+
+  // client-side validation: focus first empty required field and show error
+  stationForm.addEventListener('submit', function(e){
+    stationError.style.display = 'none';
+    const required = ['station_id','station_email','station_state','station_district','station_location'];
+    for(let id of required){
+      const el = document.getElementById(id);
+      if(!el) continue;
+      const val = (el.tagName === 'SELECT' || el.tagName === 'INPUT') ? el.value.trim() : '';
+      if(!val){
+        e.preventDefault();
+        stationError.textContent = 'Please fill the "' + (el.previousElementSibling ? el.previousElementSibling.innerText : id) + '" field.';
+        stationError.style.display = '';
+        el.focus();
+        return false;
+      }
+    }
+    return true;
+  });
+  </script>
+
+{% else %}
+  <div class="card">
+    <h2>Station: {{ session.station.name or session.station.id }}</h2>
+    <p><b>State:</b> {{ session.station.state }} — <b>District:</b> {{ session.station.district }}</p>
+    <p><b>Location:</b> {{ session.station.location }} — <b>Email:</b> {{ session.station.email }}</p>
+
+    <div class="vertical-blocks">
+      <div class="card">
+        <h3>New Complaints</h3>
+        {% if pending %}
+          {% for item in pending %}
+            <div class="card small">
+              <b>{{ item.user }}</b>
+              <p>{{ item.text }}</p>
+              <p><small>Status: {{ item.status }}</small></p>
+              <form method="POST">
+                <input type="hidden" name="resolve_id" value="{{ item.idx }}">
+                <button class="btn">Resolve</button>
+              </form>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No new complaints.</p>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <h3>Complaint Locations</h3>
+        {% if locations %}
+          {% for loc in locations %}
+            <div class="card small">
+              <b>{{ loc.user }}</b>
+              <p>{{ loc.text }}</p>
+              <p><small>Station: {{ loc.station_name or '—' }}</small></p>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No complaints with location info.</p>
+        {% endif %}
+      </div>
+
+      <div class="card">
+        <h3>Resolved Cases</h3>
+        {% if resolved %}
+          {% for r in resolved %}
+            {% set expanded = (just_resolved is not none and r.idx == just_resolved) %}
+            <div class="card small resolved-item">
+              <div class="resolved-header">
+                <b>{{ r.user }}</b>
+                <button type="button" class="btn toggle-resolved" data-target="resolved-{{ r.idx }}">{{ 'Hide' if expanded else 'Show' }}</button>
+              </div>
+              <div id="resolved-{{ r.idx }}" class="resolved-body" style="{% if expanded %}margin-top:8px;{% else %}display:none;margin-top:8px;{% endif %}">
+                <p>{{ r.text }}</p>
+                <p><small>Resolved</small></p>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p>No resolved cases yet.</p>
+        {% endif %}
+      </div>
+
+      <script>
+      document.addEventListener('click', function(e){
+        if(e.target && e.target.classList && e.target.classList.contains('toggle-resolved')){
+          const id = e.target.getAttribute('data-target');
+          const el = document.getElementById(id);
+          if(!el) return;
+          if(el.style.display === 'none' || el.style.display === ''){
+            el.style.display = (el.style.display === 'none') ? '' : '';
+            e.target.textContent = 'Hide';
+          } else {
+            el.style.display = 'none';
+            e.target.textContent = 'Show';
+          }
+        }
+      });
+      </script>
+    </div>
+  </div>
 {% endif %}
-</div>
-{% endfor %}
+
 {% endblock %}

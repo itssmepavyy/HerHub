@@ -1,14 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Medical Panel</h2>
+<h2 style="text-align:center;margin-top:18px;">Manage Medicines</h2>
 
-<form method="POST">
-<input name="name" placeholder="Medicine name">
-<input name="price" placeholder="Price">
-<button class="btn">Add</button>
-</form>
+<div class="grid">
+    <div class="card">
+        <h3>Add Medicine</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="add_medicine">
+            <label>Store</label>
+            <select name="store" required>
+                <option value="">Select store</option>
+                {% for s in stores %}
+                    <option value="{{ s.name }}">{{ s.name }} — {{ s.address }}</option>
+                {% endfor %}
+            </select>
+            <input name="med_name" placeholder="Medicine name" required>
+            <input name="med_price" placeholder="Price" required>
+            <button class="btn">Add</button>
+        </form>
+    </div>
 
-{% for m in medicines %}
-<div class="card">{{m.name}} - ₹{{m.price}}</div>
-{% endfor %}
+    <div class="card">
+        <h3>Update Medicine</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="update_medicine">
+            <label>Store</label>
+            <select name="store" id="upd_store">
+                <option value="">Select store</option>
+                {% for s in stores %}
+                    <option value="{{ s.name }}">{{ s.name }}</option>
+                {% endfor %}
+            </select>
+            <label>Existing Medicine</label>
+            <select name="old_med" id="old_med">
+                <option value="">Select medicine</option>
+            </select>
+            <input name="new_med" placeholder="New name (optional)">
+            <input name="new_price" placeholder="New price (optional)">
+            <button class="btn">Update</button>
+        </form>
+    </div>
+
+    <div class="card">
+        <h3>Remove Medicine</h3>
+        <form method="POST">
+            <input type="hidden" name="action" value="remove_medicine">
+            <label>Store</label>
+            <select name="store" id="rem_store">
+                <option value="">Select store</option>
+                {% for s in stores %}
+                    <option value="{{ s.name }}">{{ s.name }}</option>
+                {% endfor %}
+            </select>
+            <label>Medicine</label>
+            <select name="rem_med" id="rem_med">
+                <option value="">Select medicine</option>
+            </select>
+            <button class="btn">Remove</button>
+        </form>
+    </div>
+</div>
+
+<script>
+// prepare store->medicines map for client-side selects
+const storesData = {{ stores|tojson }};
+function findStore(name){ return storesData.find(s=>s.name===name); }
+
+document.getElementById('upd_store').addEventListener('change', function(){
+    const st = findStore(this.value);
+    const old = document.getElementById('old_med');
+    old.innerHTML = '<option value="">Select medicine</option>';
+    if(st && st.medicines){ st.medicines.forEach(m=>{ const o=document.createElement('option'); o.value=m.name; o.textContent=m.name+' — ₹'+m.price; old.appendChild(o); }); }
+});
+
+document.getElementById('rem_store').addEventListener('change', function(){
+    const st = findStore(this.value);
+    const rem = document.getElementById('rem_med');
+    rem.innerHTML = '<option value="">Select medicine</option>';
+    if(st && st.medicines){ st.medicines.forEach(m=>{ const o=document.createElement('option'); o.value=m.name; o.textContent=m.name+' — ₹'+m.price; rem.appendChild(o); }); }
+});
+</script>
+
 {% endblock %}

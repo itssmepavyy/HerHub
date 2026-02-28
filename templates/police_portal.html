@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card small" style="text-align:center;">
+  <h1 style="font-size:28px;">Police Portal Login</h1>
+  <p class="subtitle">Sign in with your station credentials</p>
+  <form method="POST">
+    <label for="station_id">Station ID</label>
+    <input id="station_id" name="station_id" placeholder="e.g. 1" required>
+
+    <label for="station_email">Station Email</label>
+    <input id="station_email" name="station_email" type="email" placeholder="station@example.com" required>
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" placeholder="Password" required>
+
+    <button class="btn">Login</button>
+  </form>
+</div>
+
+{% endblock %}

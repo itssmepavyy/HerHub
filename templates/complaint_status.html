@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <a class="btn ghost" href="/safety">← Back</a>
+</div>
+<div class="card">
+  <h2>Your Complaints</h2>
+  {% if complaints %}
+    <ul>
+      {% for c in complaints %}
+        <li>
+          <b>{{ c.text }}</b><br>
+          Station: {{ c.station_name or '-' }} — Status: {{ c.status }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No complaints filed yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

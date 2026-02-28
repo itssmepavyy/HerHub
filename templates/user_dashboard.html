@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Welcome {{username}}</h2>
-
-<div class="grid">
-<a class="card" href="/safety">🚨 File Complaint</a>
-<a class="card" href="/shop">💊 Medicine Shop</a>
+<div class="dashboard-top">
+	<h2>Dashboard</h2>
+	<div class="profile-links">
+		<span>Welcome, {{username}}</span>
+	</div>
 </div>
+
+<div class="dashboard-grid">
+	<a class="tile" href="/safety">🚨 Safety</a>
+	<a class="tile" href="/health">❤️ Health</a>
+	<a class="tile" href="/chat">🤖 AI Chat</a>
+</div>
+
+<button class="sos-btn" onclick="location.href='/safety'">SOS</button>
 {% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="toolbar">
+  <a class="btn ghost" href="/safety">← Back</a>
+</div>
+<div class="card small">
+  <h2>File Complaint</h2>
+  <form method="POST">
+    <label for="station_search">Search Station</label>
+    <input id="station_search" list="stations_list" placeholder="Type station name or area..." value="{% if profile and profile.station %}{% for s in stations %}{% if s.id==profile.station %}{{ s.name }} - {{ s.address }}{% endif %}{% endfor %}{% endif %}">
+    <datalist id="stations_list">
+      {% for s in stations %}
+        <option data-id="{{ s.id }}" value="{{ s.name }} - {{ s.address }}"></option>
+      {% endfor %}
+    </datalist>
+    <input type="hidden" id="station" name="station" value="{{ profile.station if profile and profile.station else '' }}">
+
+    <label for="text">Complaint</label>
+    <textarea id="text" name="text" placeholder="Describe the issue..."></textarea>
+
+    <button class="btn">Submit Complaint</button>
+    <button type="button" class="btn ghost" id="compose">Compose Email to Selected</button>
+  </form>
+</div>
+
+<script>
+// station search using datalist and hidden id mapping
+const stations = {{ stations_json|safe }};
+const stationSearch = document.getElementById('station_search');
+const stationHidden = document.getElementById('station');
+const datalist = document.getElementById('stations_list');
+
+function findStationByLabel(label){
+  return stations.find(s => (s.name + ' - ' + s.address) === label);
+}
+
+// set hidden station id when user picks or types exact option
+stationSearch.addEventListener('input', function(){
+  const val = this.value;
+  const found = findStationByLabel(val);
+  if(found){
+    stationHidden.value = found.id;
+  } else {
+    stationHidden.value = '';
+  }
+});
+
+// prefill hidden input if initial value present
+if(stationSearch.value){
+  const f = findStationByLabel(stationSearch.value);
+  if(f) stationHidden.value = f.id;
+}
+
+document.getElementById('compose').addEventListener('click', function(){
+  const sel = document.getElementById('station');
+  const text = encodeURIComponent(document.getElementById('text').value || '');
+  if(!sel.value){ alert('Select a station first'); return; }
+  const option = sel.options[sel.selectedIndex];
+  const stationText = option.text.split(' - ')[0];
+  // map station id to email via data from window
+  const stations = {{ stations_json|safe }};
+  const st = stations.find(s=>String(s.id)===sel.value);
+  if(!st){ alert('Station not found'); return; }
+  const mailto = `mailto:${st.email}?subject=${encodeURIComponent('Complaint from {{ username }}')}&body=${encodeURIComponent('Hello '+st.name+",\n\n" )+text}`;
+  window.location.href = mailto;
+});
+</script>
+{% endblock %}

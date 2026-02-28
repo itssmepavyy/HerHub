@@ -1,17 +1,84 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="card small">
-<h2>Signup</h2>
-<form method="POST">
-<input name="username" placeholder="Username">
-<input name="password" type="password" placeholder="Password">
-<select name="role">
-<option>User</option>
-<option>Police</option>
-<option>Medical</option>
-<option>Admin</option>
-</select>
-<button class="btn">Signup</button>
-</form>
+	<h2>Signup</h2>
+	<form id="signup-form" method="POST" novalidate>
+		<label class="sr-only" for="signup-username">Username</label>
+		<input id="signup-username" name="username" placeholder="Username">
+		<div class="error-text" id="err-username" aria-live="polite"></div>
+
+		<label class="sr-only" for="signup-password">Password</label>
+		<input id="signup-password" name="password" type="password" placeholder="Password">
+		<div class="error-text" id="err-password" aria-live="polite"></div>
+
+		<select id="signup-role" name="role">
+			<option value="" disabled selected>Select role</option>
+			<option value="User">User</option>
+			<option value="Police">Police</option>
+			<option value="Medical">Medical</option>
+			<option value="Admin">Admin</option>
+		</select>
+		<div class="error-text" id="err-role" aria-live="polite"></div>
+
+		<button class="btn" id="signup-submit">Signup</button>
+	</form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+	const user = document.getElementById('signup-username');
+	const pass = document.getElementById('signup-password');
+	const role = document.getElementById('signup-role');
+	const form = document.getElementById('signup-form');
+	const eUser = document.getElementById('err-username');
+	const ePass = document.getElementById('err-password');
+	const eRole = document.getElementById('err-role');
+
+	// focus password when Enter pressed in username
+	if(user && pass){
+		user.addEventListener('keydown', function(e){
+			if(e.key === 'Enter'){
+				e.preventDefault();
+				pass.focus();
+			}
+		});
+	}
+
+	function clearErrors(){
+		eUser.textContent = '';
+		ePass.textContent = '';
+		eRole.textContent = '';
+	}
+
+	form.addEventListener('submit', function(e){
+		clearErrors();
+		let hasError = false;
+		const vUser = (user.value || '').trim();
+		const vPass = (pass.value || '');
+		const vRole = (role.value || '');
+
+		if(!vUser){
+			eUser.textContent = 'The block is blank — please fill.';
+			hasError = true;
+		}
+		if(!vPass){
+			ePass.textContent = 'The block is blank — please fill.';
+			hasError = true;
+		}
+		if(!vRole){
+			eRole.textContent = 'Please select user type.';
+			hasError = true;
+		}
+
+		if(hasError){
+			e.preventDefault();
+			// focus the first invalid field
+			if(!vUser) user.focus();
+			else if(!vPass) pass.focus();
+			else role.focus();
+		}
+	});
+});
+</script>
+
 {% endblock %}

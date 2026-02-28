@@ -1,0 +1,20 @@
+{
+  "stores": [
+    {
+      "name": "City Medicals",
+      "address": "12 Main Road, Chennai",
+      "medicines": [
+        { "name": "Dolo", "price": 10 },
+        { "name": "Paracetamol", "price": 15 }
+      ]
+    },
+    {
+      "name": "Health Pharmacy",
+      "address": "45 Market Street, Madurai",
+      "medicines": [
+        { "name": "Crocin", "price": 12 },
+        { "name": "Vitamin C", "price": 20 }
+      ]
+    }
+  ]
+}

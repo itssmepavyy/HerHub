@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+  <h2>Complete Your Profile</h2>
+  <p class="subtitle">Fill all fields to access the dashboard features</p>
+  <form method="POST" enctype="multipart/form-data" id="complete-form">
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="you@gmail.com" value="{{ profile.email if profile else '' }}">
+    <div class="error-text" id="err-email"></div>
+
+    <label for="phone">Phone</label>
+    <input id="phone" name="phone" placeholder="10-digit phone" value="{{ profile.phone if profile else '' }}">
+    <div class="error-text" id="err-phone"></div>
+
+    <label for="aadhar">Aadhar</label>
+    <input id="aadhar" name="aadhar" placeholder="12-digit Aadhar" value="{{ profile.aadhar if profile else '' }}">
+    <div class="error-text" id="err-aadhar"></div>
+
+    <label for="gender">Gender</label>
+    <select id="gender" name="gender">
+      <option value="">Select</option>
+      <option value="Women" {% if profile and profile.gender=='Women' %}selected{% endif %}>Women</option>
+    </select>
+    <div class="error-text" id="err-gender"></div>
+
+    <label for="dob">Date of Birth</label>
+    <input id="dob" name="dob" type="date" value="{{ profile.dob if profile else '' }}">
+    <div class="error-text" id="err-dob"></div>
+
+    <p>Age: <span id="age-display">{{ profile.dob|calculate_age if profile and profile.dob else '' }}</span></p>
+
+    <label for="blood_group">Blood Group</label>
+    <select id="blood_group" name="blood_group">
+      <option value="">Select</option>
+      {% for bg in ['A+','A-','B+','B-','AB+','AB-','O+','O-'] %}
+        <option value="{{ bg }}" {% if profile and profile.blood_group==bg %}selected{% endif %}>{{ bg }}</option>
+      {% endfor %}
+    </select>
+    <div class="error-text" id="err-blood"></div>
+
+    <label for="address">Address</label>
+    <input id="address" name="address" placeholder="Street / House / Landmark" value="{{ profile.address if profile else '' }}">
+    <div class="error-text" id="err-address"></div>
+
+    <label for="location">Location</label>
+    <input id="location" name="location" placeholder="City / Area" value="{{ profile.location if profile else '' }}">
+    <div class="error-text" id="err-location"></div>
+
+    <label for="profile_pic">Profile picture</label>
+    <input id="profile_pic" name="profile_pic" type="file" accept="image/*">
+    <div class="error-text" id="err-pic"></div>
+
+    <label for="bio">Short bio</label>
+    <textarea id="bio" name="bio" placeholder="Tell us about yourself...">{{ profile.bio if profile else '' }}</textarea>
+    <div class="error-text" id="err-bio"></div>
+
+    <label>Interests</label>
+    <div class="interests">
+      <label><input type="checkbox" name="interests" value="Skincare" {% if profile and 'Skincare' in profile.interests %}checked{% endif %}> Skincare</label>
+      <label><input type="checkbox" name="interests" value="Allergy" {% if profile and 'Allergy' in profile.interests %}checked{% endif %}> Allergy</label>
+      <label><input type="checkbox" name="interests" value="Periods" {% if profile and 'Periods' in profile.interests %}checked{% endif %}> Periods</label>
+      <label><input type="checkbox" name="interests" value="Safety" {% if profile and 'Safety' in profile.interests %}checked{% endif %}> Safety</label>
+      <label><input type="checkbox" name="interests" value="Mental Health" {% if profile and 'Mental Health' in profile.interests %}checked{% endif %}> Mental Health</label>
+    </div>
+    <div class="error-text" id="err-interests"></div>
+
+    <label for="other">Additional interest</label>
+    <input id="other" name="other" placeholder="Other interest..." value="{{ profile.other if profile else '' }}">
+
+    <button class="btn">Submit</button>
+  </form>
+</div>
+
+<script>
+function calculateAge(dob){
+  if(!dob) return '';
+  const birth = new Date(dob);
+  const now = new Date();
+  let age = now.getFullYear() - birth.getFullYear();
+  const m = now.getMonth() - birth.getMonth();
+  if(m<0 || (m===0 && now.getDate()<birth.getDate())) age--;
+  return age;
+}
+
+document.getElementById('dob').addEventListener('change', function(){
+  document.getElementById('age-display').textContent = calculateAge(this.value);
+});
+
+document.getElementById('complete-form').addEventListener('submit', function(e){
+  // client-side validation
+  let errors = {};
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const aadhar = document.getElementById('aadhar').value.trim();
+  const gender = document.getElementById('gender').value;
+  const dob = document.getElementById('dob').value;
+  const blood = document.getElementById('blood_group').value.trim();
+  const address = document.getElementById('address').value.trim();
+  const location = document.getElementById('location').value.trim();
+  const bio = document.getElementById('bio').value.trim();
+  const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked')).map(n=>n.value);
+  const other = document.getElementById('other').value.trim();
+
+  if(!email || !email.endsWith('@gmail.com')) errors.email = 'Email must be @gmail.com';
+  if(!phone || !/^\d{10}$/.test(phone)) errors.phone = 'Phone must be 10 digits';
+  if(!aadhar || !/^\d{12}$/.test(aadhar)) errors.aadhar = 'Aadhar must be 12 digits';
+  if(!gender || gender.toLowerCase()!=='women') errors.gender = 'Only Women allowed';
+  if(!dob) errors.dob = 'Date of birth required';
+  if(!blood) errors.blood = 'Please enter blood group';
+  if(!address) errors.address = 'Address is required';
+  if(!location) errors.location = 'Location is required';
+  if(!(interests.length || other)) errors.interests = 'Please select at least one interest';
+  if(!bio) errors.bio = 'Please add a short bio';
+
+  // show
+  ['email','phone','aadhar','gender','dob','blood','interests','bio'].forEach(id=>{
+    const el = document.getElementById('err-'+id);
+    if(el) el.textContent = errors[id] || '';
+  });
+  ['address','location'].forEach(id=>{
+    const el = document.getElementById('err-'+id);
+    if(el) el.textContent = errors[id] || '';
+  });
+
+  if(Object.keys(errors).length){ e.preventDefault(); }
+});
+</script>
+
+{% endblock %}
