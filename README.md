@@ -15,25 +15,73 @@ Team Name:Hackover
 [mention your project hosted link here]
 
 ### Project Description
-[2-3 lines about what your project does]
-
+Her Hub is a web-based community support platform that connects users with essential services such as medical stores, complaint assistance, and emergency response systems. It enables secure login for different roles (User, Medical, Police) and allows real-time interaction, service management, and issue tracking. The platform aims to improve accessibility, safety, and service coordination through a centralized digital hub.
 ### The Problem statement
-[What problem are you solving?]
-
+Many people, especially women and vulnerable groups, face difficulty accessing reliable medical services, reporting issues to authorities, and getting timely support during emergencies due to fragmented systems and lack of a unified platform. Existing solutions are often slow, uncoordinated, or difficult to use.
 ### The Solution
-[How are you solving it?]
-
+HerHub aims to solve this problem by providing a single digital platform that connects users with medical stores, complaint management systems, and emergency assistance, ensuring faster communication, better accessibility, and improved safety support in one place.
 ---
 
 ## Technical Details
 
 ### Technologies/Components Used
 
-**For Software:**
-- Languages used: [e.g., JavaScript, Python, Java]
-- Frameworks used: [e.g., React, Django, Spring Boot]
-- Libraries used: [e.g., axios, pandas, JUnit]
-- Tools used: [e.g., VS Code, Git, Docker]
+For Software
+
+Languages used:
+
+-Python
+
+-HTML
+
+-CSS
+
+-JavaScript
+
+Framework used:
+
+-Flask (Python web framework)
+
+Libraries used:
+
+-Werkzeug (for password hashing & security)
+
+-Jinja2 (template engine used by Flask)
+
+-JSON module (for database storage)
+
+-OS module (file handling & uploads)
+
+-Datetime module
+
+Tools used:
+
+-VS Code (code editor)
+
+-Git / GitHub (version control & hosting)
+
+-Web Browser (Chrome/Edge for testing)
+
+✔ Hardware & software requirements section for report
+
+✔ Technology stack diagram
+
+✔ Module-wise tools mapping for documentation
+
+List the key features of your project:
+
+-Feature 1: User Complaint & Support System
+Enables users to submit complaints, requests, or issues through the platform, helping authorities or service providers respond efficiently.
+
+-Feature 2: Police Monitoring Dashboard
+Provides police stations with a dedicated dashboard to view, manage, and resolve complaints, ensuring faster response and case tracking.
+
+-Feature 3: Medical Store & Medicine Management
+Allows medical stores to add, update, and remove medicines, while users can browse and place medicine orders easily.
+
+-Feature 4: Secure Login & Role-Based Access
+Implements authentication with different roles (User, Medical, Police), ensuring each stakeholder accesses only their relevant features.
+
 
 **For Hardware:**
 - Main components: [List main components]
